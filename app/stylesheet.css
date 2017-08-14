@@ -1,0 +1,47 @@
+.appname{
+	color: red;
+	font-family:sans-serif;
+	font-size: 40px;
+	padding: 30px 30px 30px 80px;
+}
+
+.titl{
+	padding: 10px 50px 20px 50px;
+	font-size: 30px;
+}
+
+button{
+	padding: 5px;
+  margin:5px;
+  border: none;
+	background-color:rgb(50, 100, 255);
+  color:white;
+}
+
+input{
+	padding: 5px;
+  margin: 10px;
+	border: 0px;
+  border-bottom: 2px solid gray;
+}
+
+input:focus {
+  border-color: blue;
+}
+
+select{
+	padding: 5px 8px;
+	border: 2px;
+	background: lightgray;
+}
+
+h6{
+	font-family:sans-serif;
+	font-size: 20px;
+	margin: 0px;
+	padding: 10px;
+}
+
+body{
+	margin: 30px 100px 30px 100px;
+}

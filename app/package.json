@@ -1,0 +1,14 @@
+{
+  "name": "hasura-intern-app",
+  "version": "1.0.0",
+  "description": "app built for the hasura intern",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "node-fetch": "^1.6.3"
+  }
+}

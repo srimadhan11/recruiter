@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Recruiter</title>
+		<style>
+			.scroll {
+			    width: 100%;
+			    height: 100%;
+			    overflow: scroll;
+			}
+			p {
+			    font-size: 20px;
+			}
+		</style>
+		<script src="/hirejs"></script>
+	        <link rel="stylesheet" type="text/css" href="/stylesheet" />
+	</head>
+	<body onload="Start()">
+		<div class="appname">Recruiter</div>
+		<div align="right">
+			<button style="padding: 10px 50px 10px 50px;" onclick="Logoutonclick()">Logout</button>
+		</div>
+		<div class="titl">Hire a Person</div>
+		<div align="right">
+			<button style="padding: 10px 50px 10px 50px;" onclick="Profileonclick()">Profile</button>
+			<button style="padding: 10px 50px 10px 50px;" onclick="Msgonclick()">Messages</button>
+		</div>
+
+		<div style="width: 100%;">
+			<div id="messenger" style="width:25%;display: inline;float: left;">
+				<input id="to" type="text" style="border-bottom: 0px;width: -webkit-fill-available;" placeholder="To">
+				<br>
+				<input id="from" type="text" style="border-bottom: 0px;width: -webkit-fill-available;" placeholder="From">
+				<br>
+				<textarea id="messageContent" style="height: 100px;width: -webkit-fill-available;margin-left: 10px;" placeholder="Write your message..."></textarea>
+				<br>
+				<div align="right">
+					<button style="padding: 10px 50px 10px 50px;" onclick="Sendonclick()">Send</button>
+				</div>
+			</div>
+
+			<div style="float: right;display: inline;width: 70%;height: 150px;margin: 20px 0px 10px 30px;">
+				<input id="locality" type="text" placeholder="Locality">
+				<select id="gender">
+					<option value=null>Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+				<select id="qualification">
+					<option value=null>Qualification</option>
+					<option value="10">10th</option>
+					<option value="12">12th</option>
+					<option value="ug">U.G.</option>
+					<option value="pg">P.G.</option>
+				</select>
+				<div style="display: inline;width: auto;margin-left: 100px">
+					<button style="padding: 10px 50px 10px 50px;" onclick="Searchonclick()">Search</button>
+				</div>
+				<strong>
+					<p>Search results:</p>
+				</strong>
+				<div id="results" class="scroll" style="height: 100%">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

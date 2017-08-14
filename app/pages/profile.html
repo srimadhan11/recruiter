@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Recruiter</title>
+		<script src="/profilejs"></script>
+	        <link rel="stylesheet" type="text/css" href="/stylesheet" />
+	</head>
+	<body onload="profileTemplate();Start();">
+		<div class="appname">Recruiter</div>
+		<div align="right">
+			<button style="padding: 10px 50px 10px 50px;" onclick="Logoutonclick()">Logout</button>
+		</div>
+		<div class="titl">Profile</div>
+		<div align="right">
+			<button style="padding: 10px 50px 10px 50px;" onclick="Hireonclick()">Hire a Person</button>
+			<button style="padding: 10px 50px 10px 50px;" onclick="Msgonclick()">Messages</button>
+		</div>
+		<div style="padding: 20px 70px;">
+			<input id="fname" type="text" placeholder="First Name">
+			<input id="lname" type="text" style="margin-left: 50px;" placeholder="Last Name">
+			<br>
+			<div style="height: 10px;"></div>
+			<div style="padding: 10px 30px 10px 15px;">
+				<a style="padding-right: 50px;">Date of birth:</a>
+				<input id="date" type="number" placeholder="Date" style="width: 75px;">
+				<select id="month">
+					<option value=null>Month</option>
+					<option value="01">Jan</option>
+					<option value="02">Feb</option>
+					<option value="03">Mar</option>
+					<option value="04">Apr</option>
+					<option value="05">May</option>
+					<option value="06">Jun</option>
+					<option value="07">Jul</option>
+					<option value="08">Aug</option>
+					<option value="09">Sep</option>
+					<option value="10">Oct</option>
+					<option value="11">Nov</option>
+					<option value="12">Dec</option>
+				</select>
+				<input id="year" type="number" placeholder="Year" style="width: 75px;">
+			</div>
+			<br>
+			<div style="height: 10px;"></div>
+			<input id="locality" type="text" placeholder="Locality">
+			<select id="gender" style="margin-left: 100px;">
+				<option value=null>Gender</option>
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
+			<select id="qualification" style="margin-left: 100px;">
+				<option value=null>Qualification</option>
+				<option value="10">10th</option>
+				<option value="12">12th</option>
+				<option value="ug">U.G.</option>
+				<option value="pg">P.G.</option>
+			</select>
+			<br>
+			<div style="height: 10px;"></div>
+			<input id="resume" type="text" style="width: 500px;" placeholder="Resume Link">
+			<button style="padding: 10px 50px 10px 50px;margin-left: 250px;" onclick="Saveonclick()">Save</button>
+		</div>
+	</body>
+</html>
