@@ -1,5 +1,5 @@
 function startVerify(){
-	var url=document.location.search;
+	var url=document.location.search.split('?')[1];
 	var request=new XMLHttpRequest();
     request.onreadystatechange=function(){
         if(request.readyState===XMLHttpRequest.DONE){
