@@ -16,7 +16,7 @@ Resetonclick=function(){
             }
         }
     }
-    request.open('POST', "http://auth.cockpit75.hasura-app.io/password/reset", true);
+    request.open('POST', "https://auth.cockpit75.hasura-app.io/password/reset", true);
     request.setRequestHeader('Content-Type','application/json');
     request.send(JSON.stringify(params));
 }

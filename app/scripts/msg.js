@@ -12,15 +12,15 @@ function Start() {
 		        }
 		        if(request.status===401){
 				    //user role expired/not exist
-	    			window.location.href="http://app.cockpit75.hasura-app.io/";
+	    			window.location.href="https://app.cockpit75.hasura-app.io/";
 				}
 		    }
 		}
-		request.open('GET', "http://auth.cockpit75.hasura-app.io/user/account/info", true);
+		request.open('GET', "https://auth.cockpit75.hasura-app.io/user/account/info", true);
 	    request.setRequestHeader('Authorization','Bearer '+authToken);
 		request.send(null);
 	}else{
-		window.location.href="http://app.cockpit75.hasura-app.io/";
+		window.location.href="https://app.cockpit75.hasura-app.io/";
 	}
 }
 
@@ -34,31 +34,31 @@ Logoutonclick=function(){
 	                //logged out
 	                alert("Sucessfully Logged out");
 	                setCookie("auth","",-30);
-	                window.location.href="http://app.cockpit75.hasura-app.io/";
+	                window.location.href="https://app.cockpit75.hasura-app.io/";
 
 	            }
 	            if(request.status===401){
 	                //invalid session
 	                alert("Invalid Session");
-	                window.location.href="http://app.cockpit75.hasura-app.io/";
+	                window.location.href="https://app.cockpit75.hasura-app.io/";
 	            }
 	        }
 	    }
-	    request.open('POST', "http://auth.cockpit75.hasura-app.io/user/logout", true);
+	    request.open('POST', "https://auth.cockpit75.hasura-app.io/user/logout", true);
 	    request.setRequestHeader('Content-Type','application/json');
 	    request.setRequestHeader('Authorization','Bearer '+authToken);
 	    request.send(null);
 	}else{
-		window.location.href="http://app.cockpit75.hasura-app.io/";
+		window.location.href="https://app.cockpit75.hasura-app.io/";
 	}
 }
 
 Hireonclick=function(){
-	window.location.href="http://app.cockpit75.hasura-app.io/hire";
+	window.location.href="https://app.cockpit75.hasura-app.io/hire";
 }
 
 Profileonclick=function(){
-	window.location.href="http://app.cockpit75.hasura-app.io/profile";
+	window.location.href="https://app.cockpit75.hasura-app.io/profile";
 }
 
 function inboxMessage(msgArray) {
@@ -89,7 +89,7 @@ function inboxMessage(msgArray) {
 				}
 	        }
 	    }
-	    request.open('POST', "http://data.cockpit75.hasura-app.io/v1/query", false);
+	    request.open('POST', "https://data.cockpit75.hasura-app.io/v1/query", false);
 	    request.setRequestHeader('Content-Type','application/json');
 	    request.setRequestHeader('Authorization','Bearer '+getCookie("auth"));
 	    request.send(JSON.stringify(params));
@@ -125,7 +125,7 @@ function sentMessage(msgArray) {
 				}
 	        }
 	    }
-	    request.open('POST', "http://data.cockpit75.hasura-app.io/v1/query", false);
+	    request.open('POST', "https://data.cockpit75.hasura-app.io/v1/query", false);
 	    request.setRequestHeader('Content-Type','application/json');
 	    request.setRequestHeader('Authorization','Bearer '+getCookie("auth"));
 	    request.send(JSON.stringify(params));
@@ -207,7 +207,7 @@ setInterval(function(){
 			            if(request1.status===401){
 						    //user role expired/not exist
 						    alert("Invalid Session");
-    						window.location.href="http://app.cockpit75.hasura-app.io/";
+    						window.location.href="https://app.cockpit75.hasura-app.io/";
 						}
 						if(request1.status===400){
 						    //bad request (table not exist or invalid query)
@@ -215,7 +215,7 @@ setInterval(function(){
 						}
 			        }
 			    }
-			    request1.open('POST', "http://data.cockpit75.hasura-app.io/v1/query", true);
+			    request1.open('POST', "https://data.cockpit75.hasura-app.io/v1/query", true);
 			    request1.setRequestHeader('Content-Type','application/json');
 			    request1.setRequestHeader('Authorization','Bearer '+getCookie("auth"));
 			    request1.send(JSON.stringify(params));
@@ -242,7 +242,7 @@ setInterval(function(){
 			            if(request2.status===401){
 						    //user role expired/not exist
 						    alert("Invalid Session");
-    						window.location.href="http://app.cockpit75.hasura-app.io/";
+    						window.location.href="https://app.cockpit75.hasura-app.io/";
 						}
 						if(request2.status===400){
 						    //bad request (table not exist or invalid query)
@@ -250,18 +250,18 @@ setInterval(function(){
 						}
 			        }
 			    }
-			    request2.open('POST', "http://data.cockpit75.hasura-app.io/v1/query", true);
+			    request2.open('POST', "https://data.cockpit75.hasura-app.io/v1/query", true);
 			    request2.setRequestHeader('Content-Type','application/json');
 			    request2.setRequestHeader('Authorization','Bearer '+getCookie("auth"));
 			    request2.send(JSON.stringify(params));
 	        }
 	        if(request.status===401){
 			    //user role expired/not exist
-			    window.location.href="http://app.cockpit75.hasura-app.io/";
+			    window.location.href="https://app.cockpit75.hasura-app.io/";
 			}
 	    }
 	}
-	request.open('GET', "http://auth.cockpit75.hasura-app.io/user/account/info", true);
+	request.open('GET', "https://auth.cockpit75.hasura-app.io/user/account/info", true);
 	request.setRequestHeader('Authorization','Bearer '+getCookie("auth"));
 	request.send(null);
 }, 10000);

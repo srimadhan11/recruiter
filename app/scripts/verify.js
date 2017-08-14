@@ -30,30 +30,30 @@ function startVerify(){
 						        if(request2.readyState===XMLHttpRequest.DONE){
 						            if(request2.status===200){
 						                //verified
-						                window.location.href="http://app.cockpit75.hasura-app.io/profile";
+						                window.location.href="https://app.cockpit75.hasura-app.io/profile";
 						            }
 						            if(request2.status===401){
 						                //invalid or expired session
-						                window.location.href="http://app.cockpit75.hasura-app.io/";
+						                window.location.href="https://app.cockpit75.hasura-app.io/";
 						            }
 						            if(request2.status===400){
 						                //violation of database rules
-						                window.location.href="http://app.cockpit75.hasura-app.io/";
+						                window.location.href="https://app.cockpit75.hasura-app.io/";
 						            }
 						        }
 						    }
-						    request2.open('POST', "http://data.cockpit75.hasura-app.io/v1/query", true);
+						    request2.open('POST', "https://data.cockpit75.hasura-app.io/v1/query", true);
 						    request2.setRequestHeader('Content-Type','application/json');
 						    request2.setRequestHeader('Authorization','Bearer '+getCookie("auth"));
 						    request2.send(JSON.stringify(params));
 			            }
 			            if(request1.status===401){
 						    //user role expired/not exist
-						    window.location.href="http://app.cockpit75.hasura-app.io/";
+						    window.location.href="https://app.cockpit75.hasura-app.io/";
 						}
 			        }
 			    }
-			    request1.open('GET', "http://auth.cockpit75.hasura-app.io/user/account/info", true);
+			    request1.open('GET', "https://auth.cockpit75.hasura-app.io/user/account/info", true);
 			    request1.setRequestHeader('Authorization','Bearer '+getCookie("auth"));
 			    request1.send(null);
             }
@@ -63,7 +63,7 @@ function startVerify(){
             }
         }
     }
-    request.open('GET', "http://auth.cockpit75.hasura-app.io/email/confirm?token="+url, true);
+    request.open('GET', "https://auth.cockpit75.hasura-app.io/email/confirm?token="+url, true);
     request.send(null);
 }
 

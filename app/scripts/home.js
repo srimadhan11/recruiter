@@ -7,16 +7,16 @@ function Start() {
 		        if(request.status===200){
 		            var result=JSON.parse(request.responseText);
 					if(authToken===result["auth_token"]){
-	    				window.location.href="http://app.cockpit75.hasura-app.io/profile";
+	    				window.location.href="https://app.cockpit75.hasura-app.io/profile";
 					}
 		        }
 		        if(request.status===401){
 				    //user role expired/not exist
-	    			window.location.href="http://app.cockpit75.hasura-app.io/";
+	    			window.location.href="https://app.cockpit75.hasura-app.io/";
 				}
 		    }
 		}
-		request.open('GET', "http://auth.cockpit75.hasura-app.io/user/account/info", true);
+		request.open('GET', "https://auth.cockpit75.hasura-app.io/user/account/info", true);
 	    request.setRequestHeader('Authorization','Bearer '+authToken);
 		request.send(null);
 	}
@@ -36,7 +36,7 @@ Signinonclick=function(){
                 var result=JSON.parse(request.responseText);
                 //setcookie
                 setCookie("auth",result["auth_token"],10);
-                window.location.href="http://app.cockpit75.hasura-app.io/profile";
+                window.location.href="https://app.cockpit75.hasura-app.io/profile";
             }
             if(request.status===403){
                 //incorrect username
@@ -48,7 +48,7 @@ Signinonclick=function(){
             }
         }
     }
-    request.open('POST', "http://auth.cockpit75.hasura-app.io/login", true);
+    request.open('POST', "https://auth.cockpit75.hasura-app.io/login", true);
     request.setRequestHeader('Content-Type','application/json');
     request.send(JSON.stringify(params));
 }
@@ -73,7 +73,7 @@ Createonclick=function(){
 	                //setcookie
 	                var result=JSON.parse(request.responseText);
 	                setCookie("auth",result["auth_token"],10);
-	                window.location.href="http://app.cockpit75.hasura-app.io/profile";
+	                window.location.href="https://app.cockpit75.hasura-app.io/profile";
 	            }
 	            if(request.status===409){
 	                //username or email is already registered
@@ -81,7 +81,7 @@ Createonclick=function(){
 	            }
 	        }
 	    }
-	    request.open('POST', "http://auth.cockpit75.hasura-app.io/signup", true);
+	    request.open('POST', "https://auth.cockpit75.hasura-app.io/signup", true);
 	    request.setRequestHeader('Content-Type','application/json');
 	    request.send(JSON.stringify(params));
 	}else{
