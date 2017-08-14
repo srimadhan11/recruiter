@@ -73,13 +73,13 @@ Searchonclick=function(){
 	var Qualification=document.getElementById("qualification").value;
 	var paramString={};
 
-	if(Gender!=""){
+	if(Gender!=null){
 		paramString.gender=Gender;
 	}
-	if(Locality!=""){
+	if(Locality!=null||Locality!=""){
 		paramString.locality=Locality;
 	}
-	if(Qualification!=""){
+	if(Qualification!=null){
 		paramString.qualification=Qualification;
 	}
 	var params={

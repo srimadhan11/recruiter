@@ -56,8 +56,7 @@ Signinonclick=function(){
 Createonclick=function(){
 	var password=document.getElementById("registerPassword").value;
 	var cpassword=document.getElementById("confirmPassword").value;
-	var email=document.getElementById("email").value;
-	var password=document.getElementById("password").value;
+	var email=document.getElementById("registerEmail").value;
 	var username=document.getElementById("uname").value;
 	if(cpassword==password){
 		var params={
