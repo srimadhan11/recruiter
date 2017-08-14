@@ -1,5 +1,4 @@
 function startVerify(){
-    var Content=document.getElementById("content");
 	var url=document.location.search;
 	var request=new XMLHttpRequest();
     request.onreadystatechange=function(){

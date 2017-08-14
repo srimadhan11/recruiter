@@ -47,7 +47,7 @@ app.get('/password_resetterjs', function (req, res) {
   res.sendFile(path.join(__dirname, 'scripts', 'passwordresetter.js'));
 });
 app.get('/verifyjs', function (req, res) {
-  res.sendFile(path.join(__dirname, 'pages', 'verify.js'));
+  res.sendFile(path.join(__dirname, 'scripts', 'verify.js'));
 });
 
 

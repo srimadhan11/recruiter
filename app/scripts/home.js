@@ -71,8 +71,9 @@ Createonclick=function(){
 	                //signup sucess
 	                //setcookie
 	                var result=JSON.parse(request.responseText);
-	                setCookie("auth",result["auth_token"],10);
-	                window.location.href="https://app.cockpit75.hasura-app.io/profile";
+	                alert("Email has been sent! Close this window...");
+	                //setCookie("auth",result["auth_token"],10);
+	                //window.location.href="https://app.cockpit75.hasura-app.io/profile";
 	            }
 	            if(request.status===409){
 	                //username or email is already registered
