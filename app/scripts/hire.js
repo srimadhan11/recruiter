@@ -10,6 +10,7 @@ function Start() {
 		            var result=JSON.parse(request.responseText);
 					if(authToken===result["auth_token"]){
 	    				//user role exist
+	    				document.getElementById("from").value=result["username"]+"-"+result["email"]+"(you)";
 					}
 		        }
 		        if(request.status===401){
@@ -57,6 +58,33 @@ Logoutonclick=function(){
 
 function setUserId(userId){
 	toUserId=userId;
+
+	var params={
+	    "type" : "select",
+	    "args" : {
+	        "table" : "profile",
+	        "columns" : ["*"],
+	        "where" :  {
+	        	"user_id":userId
+	        }
+	        
+	    }
+	};
+    var request=new XMLHttpRequest();
+    request.onreadystatechange=function(){
+        if(request.readyState===XMLHttpRequest.DONE){
+            if(request.status===200){
+                //verified
+                //TODO:display search result
+                var result=JSON.parse(request.responseText);
+                document.getElementById("to").value=result["fname"]+" "+result["lname"];
+            }
+        }
+    }
+    request.open('POST', "https://data.cockpit75.hasura-app.io/v1/query", true);
+    request.setRequestHeader('Content-Type','application/json');
+    request.setRequestHeader('Authorization','Bearer '+getCookie("auth"));
+    request.send(JSON.stringify(params));
 }
 
 Profileonclick=function(){
