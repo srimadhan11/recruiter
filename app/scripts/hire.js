@@ -77,7 +77,7 @@ function setUserId(userId){
                 //verified
                 //TODO:display search result
                 var result=JSON.parse(request.responseText);
-                document.getElementById("to").value=result["fname"]+" "+result["lname"];
+                document.getElementById("to").value=result[0]["fname"]+" "+result[0]["lname"];
             }
         }
     }
