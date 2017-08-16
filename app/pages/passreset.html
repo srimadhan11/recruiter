@@ -4,26 +4,30 @@
 	<title>Recruiter</title>
 	<script>
 	Resetonclick=function(){
-		var email=document.getElementById("email").value;
-		var params={
-			"email":email
-		};
-		var request=new XMLHttpRequest();
-		request.onreadystatechange=function(){
-			if(request.readyState===XMLHttpRequest.DONE){
-				if(request.status===200){
-					console.log("reset link sent");
-					alert("Reset link has been sent");
-				}
-				if(request.status===401){
-					console.log("invalid session");
-					alert("Invalid user session");
+		var email=document.getElementById("email");
+		if (email===null) {
+			alert("enter email");
+		} else {
+			var params={
+				"email":email.value
+			};
+			var request=new XMLHttpRequest();
+			request.onreadystatechange=function(){
+				if(request.readyState===XMLHttpRequest.DONE){
+					if(request.status===200){
+						console.log("reset link sent");
+						alert("Reset link has been sent");
+					}
+					if(request.status===401){
+						console.log("invalid session");
+						alert("Invalid user session");
+					}
 				}
 			}
+			request.open('POST', "https://auth.cockpit75.hasura-app.io/password/forgot", true);
+			request.setRequestHeader('Content-Type','application/json');
+			request.send(JSON.stringify(params));
 		}
-		request.open('POST', "https://auth.cockpit75.hasura-app.io/password/forgot", true);
-		request.setRequestHeader('Content-Type','application/json');
-		request.send(JSON.stringify(params));
 	}
 	</script>
 	<link rel="stylesheet" type="text/css" href="/stylesheet" />

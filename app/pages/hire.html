@@ -109,19 +109,19 @@
 	}
 
 	Searchonclick=function(){
-		var Gender=document.getElementById("gender").value;
-		var Locality=document.getElementById("locality").value;
-		var Qualification=document.getElementById("qualification").value;
+		var Gender=document.getElementById("gender");
+		var Locality=document.getElementById("locality");
+		var Qualification=document.getElementById("qualification");
 		var paramString={};
 
-		if(Gender!=null){
-			paramString.gender=Gender;
+		if(Gender!==null){
+			paramString.gender=Gender.value;
 		}
-		if(Locality!=null||Locality!=""){
-			paramString.locality=Locality;
+		if(Locality!==null){
+			paramString.locality=Locality.value;
 		}
-		if(Qualification!=null){
-			paramString.qualification=Qualification;
+		if(Qualification!==null){
+			paramString.qualification=Qualification.value;
 		}
 		var params={
 			"type" : "select",
@@ -142,7 +142,12 @@
 					for (var i = 0; i < result.length; i++) {
 						temp+=resultsBuilder(result[i]);
 					}
-					document.getElementById("results").innerHTML=temp;
+					if (result.length===0) {
+						document.getElementById("results").innerHTML="No results found";
+					} else {
+						document.getElementById("results").innerHTML=temp;
+					}
+
 				}
 				if(request.status===401){
 					console.log("user role expired/not exist");
