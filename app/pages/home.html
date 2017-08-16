@@ -1,162 +1,162 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Recruiter</title>
-		<script>
-		function Start() {
-			var authToken=getCookie("auth");
-			if(authToken!=""){
-				var request=new XMLHttpRequest();
-				request.onreadystatechange=function(){
-						if(request.readyState===XMLHttpRequest.DONE){
-								if(request.status===200){
-										var result=JSON.parse(request.responseText);
-							if(authToken===result["auth_token"]){
-									window.location.href="https://app.cockpit75.hasura-app.io/profile";
-							}
-								}
-								if(request.status===401){
-								//user role expired/not exist
-								window.location.href="https://app.cockpit75.hasura-app.io/";
+<head>
+	<title>Recruiter</title>
+	<script>
+	function Start() {
+		var authToken=getCookie("auth");
+		if(authToken!=""){
+			var request=new XMLHttpRequest();
+			request.onreadystatechange=function(){
+				if(request.readyState===XMLHttpRequest.DONE){
+					if(request.status===200){
+						var result=JSON.parse(request.responseText);
+						if(authToken===result["auth_token"]){
+							window.location.href="https://app.cockpit75.hasura-app.io/profile";
 						}
-						}
+					}
+					if(request.status===401){
+						//user role expired/not exist
+						window.location.href="https://app.cockpit75.hasura-app.io/";
+					}
 				}
-				request.open('GET', "https://auth.cockpit75.hasura-app.io/user/account/info", true);
-					request.setRequestHeader('Authorization','Bearer '+authToken);
-				request.send(null);
+			}
+			request.open('GET', "https://auth.cockpit75.hasura-app.io/user/account/info", true);
+			request.setRequestHeader('Authorization','Bearer '+authToken);
+			request.send(null);
+		}
+	}
+	Signinonclick=function(){
+		var username=document.getElementById("username").value;
+		var password=document.getElementById("password").value;
+		var params={
+			"password":password,
+			"username":username
+		};
+		var request=new XMLHttpRequest();
+		request.onreadystatechange=function(){
+			if(request.readyState===XMLHttpRequest.DONE){
+				if(request.status===200){
+					//login sucessfull
+					var result=JSON.parse(request.responseText);
+					//setcookie
+					setCookie("auth",result["auth_token"],10);
+					window.location.href="https://app.cockpit75.hasura-app.io/profile";
+				}
+				if(request.status===403){
+					//incorrect username
+					alert("Incorrect Credentials");
+				}
+				if(request.status===401){
+					//incorrect credentials
+					alert("Incorrect Credentials");
+				}
 			}
 		}
-		Signinonclick=function(){
-			var username=document.getElementById("username").value;
-			var password=document.getElementById("password").value;
+		request.open('POST', "https://auth.cockpit75.hasura-app.io/login", true);
+		request.setRequestHeader('Content-Type','application/json');
+		request.send(JSON.stringify(params));
+	}
+
+	Createonclick=function(){
+		var password=document.getElementById("registerPassword").value;
+		var cpassword=document.getElementById("confirmPassword").value;
+		var email=document.getElementById("registerEmail").value;
+		var username=document.getElementById("uname").value;
+		if(cpassword==password){
 			var params={
 				"password":password,
-				"username":username
+				"username":username,
+				"email":email
 			};
-				var request=new XMLHttpRequest();
-				request.onreadystatechange=function(){
-						if(request.readyState===XMLHttpRequest.DONE){
-								if(request.status===200){
-										//login sucessfull
-										var result=JSON.parse(request.responseText);
-										//setcookie
-										setCookie("auth",result["auth_token"],10);
-										window.location.href="https://app.cockpit75.hasura-app.io/profile";
-								}
-								if(request.status===403){
-										//incorrect username
-										alert("Incorrect Credentials");
-								}
-								if(request.status===401){
-										//incorrect credentials
-										alert("Incorrect Credentials");
-								}
-						}
-				}
-				request.open('POST', "https://auth.cockpit75.hasura-app.io/login", true);
-				request.setRequestHeader('Content-Type','application/json');
-				request.send(JSON.stringify(params));
-		}
-
-		Createonclick=function(){
-			var password=document.getElementById("registerPassword").value;
-			var cpassword=document.getElementById("confirmPassword").value;
-			var email=document.getElementById("registerEmail").value;
-			var username=document.getElementById("uname").value;
-			if(cpassword==password){
-				var params={
-					"password":password,
-					"username":username,
-					"email":email
-				};
-				var request=new XMLHttpRequest();
-					request.onreadystatechange=function(){
-							if(request.readyState===XMLHttpRequest.DONE){
-									if(request.status===200){
-											//signup sucess
-											//setcookie
-											var result=JSON.parse(request.responseText);
-											alert("Email has been sent! Close this window...");
-											//setCookie("auth",result["auth_token"],10);
-											//window.location.href="https://app.cockpit75.hasura-app.io/profile";
-									}
-									if(request.status===409){
-											//username or email is already registered
-											alert("Email or Username is already registered");
-									}
-							}
+			var request=new XMLHttpRequest();
+			request.onreadystatechange=function(){
+				if(request.readyState===XMLHttpRequest.DONE){
+					if(request.status===200){
+						//signup sucess
+						//setcookie
+						var result=JSON.parse(request.responseText);
+						alert("Email has been sent! Close this window...");
+						//setCookie("auth",result["auth_token"],10);
+						//window.location.href="https://app.cockpit75.hasura-app.io/profile";
 					}
-					request.open('POST', "https://auth.cockpit75.hasura-app.io/signup", true);
-					request.setRequestHeader('Content-Type','application/json');
-					request.send(JSON.stringify(params));
-			}else{
-				//notify mismatch password
-				alert("Password Mismatch");
+					if(request.status===409){
+						//username or email is already registered
+						alert("Email or Username is already registered");
+					}
+				}
 			}
-
+			request.open('POST', "https://auth.cockpit75.hasura-app.io/signup", true);
+			request.setRequestHeader('Content-Type','application/json');
+			request.send(JSON.stringify(params));
+		}else{
+			//notify mismatch password
+			alert("Password Mismatch");
 		}
 
-		function setCookie(cname, cvalue, exdays) {
-				var d = new Date();
-				d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-				var expires = "expires="+d.toUTCString();
-				document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-		}
+	}
 
-		function getCookie(cname) {
-				var name = cname + "=";
-				var ca = document.cookie.split(';');
-				for(var i = 0; i < ca.length; i++) {
-						var c = ca[i];
-						while (c.charAt(0) == ' ') {
-								c = c.substring(1);
-						}
-						if (c.indexOf(name) == 0) {
-								return c.substring(name.length, c.length);
-						}
-				}
-				return "";
-		}
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+		var expires = "expires="+d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
 
-		/*function checkCookie() {
-				var user = getCookie("username");
-				if (user != "") {
-						alert("Welcome again " + user);
-				} else {
-						user = prompt("Please enter your name:", "");
-						if (user != "" && user != null) {
-								setCookie("username", user, 365);
-						}
-				}
-		}*/
-		</script>
-	        <link rel="stylesheet" type="text/css" href="/stylesheet" />
-	</head>
-	<body onload="Start()">
-		<div class="appname">Recruiter</div>
-		<div align="right" style="padding: 10px 20px 5px 0px;">
-			<input id="username" type="text" placeholder="Username">
-			<input id="password" type="password" placeholder="Password">
-		</div>
-		<br>
-		<div align="right" style="padding: 10px 20px 5px 0px;">
-			<a href="/pass_reset"  style="padding: 10px 50px 10px 50px;">Forgot password?</a>
-			<button onclick="Signinonclick()" style="padding: 10px 50px 10px 50px;">Sign In</button>
-		</div>
-		<h6 style="padding-top: 30px;">Want an account? Sign up here</h6>
-		<div style="height: 10px;"></div>
-		<input id="uname" type="text" style="margin-left: 40px;" placeholder="Username">
-		<br>
-		<div style="height: 10px;"></div>
-		<input id="registerEmail" type="text" style="margin-left: 40px;" placeholder="E-mail">
-		<br>
-		<div style="height: 10px;"></div>
-		<input id="registerPassword" type="password" style="margin-left: 40px;" placeholder="Enter your Password">
-		<br>
-		<div style="height: 10px;"></div>
-		<input id="confirmPassword" type="password" style="margin-left: 40px;" placeholder="Confirm your Password">
-		<div align="right">
-			<button onclick="Createonclick()" id="create"  style="padding: 10px 50px 10px 50px;">Create</button>
-		</div>
-	</body>
+	function getCookie(cname) {
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	/*function checkCookie() {
+	var user = getCookie("username");
+	if (user != "") {
+	alert("Welcome again " + user);
+} else {
+user = prompt("Please enter your name:", "");
+if (user != "" && user != null) {
+setCookie("username", user, 365);
+}
+}
+}*/
+</script>
+<link rel="stylesheet" type="text/css" href="/stylesheet" />
+</head>
+<body onload="Start()">
+	<div class="appname">Recruiter</div>
+	<div align="right" style="padding: 10px 20px 5px 0px;">
+		<input id="username" type="text" placeholder="Username">
+		<input id="password" type="password" placeholder="Password">
+	</div>
+	<br>
+	<div align="right" style="padding: 10px 20px 5px 0px;">
+		<a href="/pass_reset"  style="padding: 10px 50px 10px 50px;">Forgot password?</a>
+		<button onclick="Signinonclick()" style="padding: 10px 50px 10px 50px;">Sign In</button>
+	</div>
+	<h6 style="padding-top: 30px;">Want an account? Sign up here</h6>
+	<div style="height: 10px;"></div>
+	<input id="uname" type="text" style="margin-left: 40px;" placeholder="Username">
+	<br>
+	<div style="height: 10px;"></div>
+	<input id="registerEmail" type="text" style="margin-left: 40px;" placeholder="E-mail">
+	<br>
+	<div style="height: 10px;"></div>
+	<input id="registerPassword" type="password" style="margin-left: 40px;" placeholder="Enter your Password">
+	<br>
+	<div style="height: 10px;"></div>
+	<input id="confirmPassword" type="password" style="margin-left: 40px;" placeholder="Confirm your Password">
+	<div align="right">
+		<button onclick="Createonclick()" id="create"  style="padding: 10px 50px 10px 50px;">Create</button>
+	</div>
+</body>
 </html>
