@@ -33,15 +33,15 @@
 								request2.onreadystatechange=function(){
 									if(request2.readyState===XMLHttpRequest.DONE){
 										if(request2.status===200){
-											//verified
+											console.log("verified");
 											window.location.href="https://app.cockpit75.hasura-app.io/profile";
 										}
 										if(request2.status===401){
-											//invalid or expired session
+											console.log("invalid or expired session");
 											window.location.href="https://app.cockpit75.hasura-app.io/";
 										}
 										if(request2.status===400){
-											//violation of database rules
+											console.log("violation of database rules");
 											window.location.href="https://app.cockpit75.hasura-app.io/";
 										}
 									}
@@ -52,7 +52,7 @@
 								request2.send(JSON.stringify(params));
 							}
 							if(request1.status===401){
-								//user role expired/not exist
+								console.log("user role expired/not exist");
 								window.location.href="https://app.cockpit75.hasura-app.io/";
 							}
 						}
@@ -62,7 +62,7 @@
 					request1.send(null);
 				}
 				if(request.status===400){
-					//invalid or token expired
+					console.log("invalid or token expired");
 					alert("Invalid or Expired Token");
 				}
 			}
@@ -95,9 +95,9 @@
 	</script>
 	<link rel="stylesheet" type="text/css" href="/stylesheet" />
 </head>
-<body>
+<body onload="startVerify()">
 	<div class="appname">Recruiter</div>
 	<div class="titl">E-mail verification</div>
-	<div onload="startVerify()" id="content"></div>
+	<div id="content"></div>
 </body>
 </html>

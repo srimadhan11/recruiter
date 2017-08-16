@@ -12,11 +12,11 @@
 		request.onreadystatechange=function(){
 			if(request.readyState===XMLHttpRequest.DONE){
 				if(request.status===200){
-					//reset link sent
+					console.log("reset link sent");
 					alert("Reset link has been sent");
 				}
 				if(request.status===401){
-					//invalid session
+					console.log("invalid session");
 					alert("Invalid user session");
 				}
 			}

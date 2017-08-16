@@ -24,12 +24,12 @@
 					if(request.status===200){
 						var result=JSON.parse(request.responseText);
 						if(authToken===result["auth_token"]){
-							//user role exist
+							console.log("user role exist");
 							document.getElementById("from").value=result["username"]+"-"+result["email"]+"(you)";
 						}
 					}
 					if(request.status===401){
-						//user role expired/not exist
+						console.log("user role expired/not exist");
 						window.location.href="https://app.cockpit75.hasura-app.io/";
 					}
 				}
@@ -49,14 +49,14 @@
 			request.onreadystatechange=function(){
 				if(request.readyState===XMLHttpRequest.DONE){
 					if(request.status===200){
-						//logged out
+						console.log("user logged out");
 						alert("Sucessfully Logged out");
 						setCookie("auth","",-30);
 						window.location.href="https://app.cockpit75.hasura-app.io/";
 
 					}
 					if(request.status===401){
-						//invalid session
+						console.log("invalid session");
 						alert("Invalid Session");
 						window.location.href="https://app.cockpit75.hasura-app.io/";
 					}
@@ -89,8 +89,6 @@
 		request.onreadystatechange=function(){
 			if(request.readyState===XMLHttpRequest.DONE){
 				if(request.status===200){
-					//verified
-					//TODO:display search result
 					var result=JSON.parse(request.responseText);
 					document.getElementById("to").value=result[0]["fname"]+" "+result[0]["lname"];
 				}
@@ -139,7 +137,6 @@
 			if(request.readyState===XMLHttpRequest.DONE){
 				if(request.status===200){
 					//verified
-					//TODO:display search result
 					var result=JSON.parse(request.responseText);
 					var temp="";
 					for (var i = 0; i < result.length; i++) {
@@ -148,12 +145,12 @@
 					document.getElementById("results").innerHTML=temp;
 				}
 				if(request.status===401){
-					//user role expired/not exist
+					console.log("user role expired/not exist");
 					alert("Invalid Session");
 					window.location.href="https://app.cockpit75.hasura-app.io/";
 				}
 				if(request.status===400){
-					//bad request (table not exist or invalid query)
+					console.log("bad request (table not exist or invalid query)");
 					alert("Bad query");
 				}
 			}
@@ -191,16 +188,15 @@
 						request1.onreadystatechange=function(){
 							if(request1.readyState===XMLHttpRequest.DONE){
 								if(request1.status===200){
-									//verified
 									alert("Message Sent");
 								}
 								if(request1.status===401){
-									//user role expired/not exist
+									console.log("user role expired/not exist");
 									alert("Invalid Session");
 									window.location.href="https://app.cockpit75.hasura-app.io/";
 								}
 								if(request1.status===400){
-									//bad request (table not exist or invalid query)
+									console.log("bad request (table not exist or invalid query)");
 									alert("Bad query");
 								}
 							}
@@ -211,7 +207,7 @@
 						request1.send(JSON.stringify(params));
 					}
 					if(request.status===401){
-						//user role expired/not exist
+						console.log("user role expired/not exist");
 						alert("Invalid Session");
 						window.location.href="https://app.cockpit75.hasura-app.io/";
 					}

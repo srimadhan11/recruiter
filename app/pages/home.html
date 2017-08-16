@@ -16,7 +16,7 @@
 						}
 					}
 					if(request.status===401){
-						//user role expired/not exist
+						console.log("user role expired/not exist");
 						window.location.href="https://app.cockpit75.hasura-app.io/";
 					}
 				}
@@ -37,18 +37,17 @@
 		request.onreadystatechange=function(){
 			if(request.readyState===XMLHttpRequest.DONE){
 				if(request.status===200){
-					//login sucessfull
+					console.log("login sucessfull");
 					var result=JSON.parse(request.responseText);
-					//setcookie
 					setCookie("auth",result["auth_token"],10);
 					window.location.href="https://app.cockpit75.hasura-app.io/profile";
 				}
 				if(request.status===403){
-					//incorrect username
+					console.log("incorrect username");
 					alert("Incorrect Credentials");
 				}
 				if(request.status===401){
-					//incorrect credentials
+					console.log("incorrect credentials");
 					alert("Incorrect Credentials");
 				}
 			}
@@ -73,15 +72,12 @@
 			request.onreadystatechange=function(){
 				if(request.readyState===XMLHttpRequest.DONE){
 					if(request.status===200){
-						//signup sucess
-						//setcookie
+						console.log("signup success");
 						var result=JSON.parse(request.responseText);
 						alert("Email has been sent! Close this window...");
-						//setCookie("auth",result["auth_token"],10);
-						//window.location.href="https://app.cockpit75.hasura-app.io/profile";
 					}
 					if(request.status===409){
-						//username or email is already registered
+						console.log("username or email is already registered");
 						alert("Email or Username is already registered");
 					}
 				}
@@ -90,7 +86,7 @@
 			request.setRequestHeader('Content-Type','application/json');
 			request.send(JSON.stringify(params));
 		}else{
-			//notify mismatch password
+			console.log("notify mismatch password");
 			alert("Password Mismatch");
 		}
 
