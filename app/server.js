@@ -42,25 +42,3 @@ app.listen(8080, function () {
   console.log(`Recruiter app is listening on port 8080!`);
 });
 
-//scripts
-// app.get('/homejs', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'scripts', 'home.js'));
-// });
-// app.get('/msgjs', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'scripts', 'msg.js'));
-// });
-// app.get('/profilejs', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'scripts', 'profile.js'));
-// });
-// app.get('/hirejs', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'scripts', 'hire.js'));
-// });
-// app.get('/pass_resetjs', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'scripts', 'passreset.js'));
-// });
-// app.get('/password_resetterjs', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'scripts', 'passwordresetter.js'));
-// });
-// app.get('/verifyjs', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'scripts', 'verify.js'));
-// });
